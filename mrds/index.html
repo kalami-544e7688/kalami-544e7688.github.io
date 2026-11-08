@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mrds - mrds热门榜单推荐_mrds最新更新与深度解析</title>
+<meta name="description" content="mrds专题聚合页，汇总mrds热门榜单、最新更新动态、内容类型解析与用户真实评论，提供推荐清单、常见问题与延伸阅读，方便快速了解mrds值得关注的内容与追踪方向。">
+<meta name="keywords" content="mrds,mrds热门榜单,mrds最新更新,mrds深度解析,mrds推荐">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2b4b'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23ffcc55'%3Emr%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --c-bg:#f5f3ee;
+  --c-panel:#ffffff;
+  --c-ink:#1b2b4b;
+  --c-ink-2:#41506b;
+  --c-mut:#7b8496;
+  --c-line:#e3dfd6;
+  --c-acc:#c8952f;
+  --c-acc-2:#ffd977;
+  --c-soft:#fbf6e8;
+  --c-tag:#eef2f8;
+  --rad:14px;
+  --rad-s:9px;
+  --sh:0 6px 20px rgba(27,43,75,.07);
+  --sh-h:0 12px 30px rgba(27,43,75,.13);
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--c-bg);
+  color:var(--c-ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:800}
+p{margin:0 0 12px}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+.sec{padding:38px 0 10px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.sec-head h2{font-size:22px;letter-spacing:.5px;position:relative;padding-left:14px}
+.sec-head h2::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:5px;border-radius:3px;background:linear-gradient(180deg,var(--c-acc),var(--c-acc-2))}
+.sec-head .sub{color:var(--c-mut);font-size:13px}
+.more{font-size:13px;color:var(--c-acc);font-weight:700;border-bottom:1px dashed var(--c-acc);padding-bottom:1px}
+
+/* ---------- 导航 ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--c-line)}
+.nav-in{display:flex;align-items:center;gap:18px;height:62px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:19px;letter-spacing:1px}
+.logo .mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(140deg,#1b2b4b,#38506f);color:var(--c-acc-2);display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:0}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;margin-left:6px}
+.nav-links a{font-size:13.5px;color:var(--c-ink-2);padding:7px 10px;border-radius:8px;transition:.2s}
+.nav-links a:hover{background:var(--c-soft);color:var(--c-ink)}
+.nav-cta{margin-left:auto;display:flex;gap:9px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 17px;border-radius:10px;font-size:13.5px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:.2s}
+.btn-main{background:linear-gradient(135deg,#1b2b4b,#2f4467);color:#fff;box-shadow:0 6px 16px rgba(27,43,75,.22)}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,43,75,.28)}
+.btn-ghost{background:#fff;border-color:var(--c-line);color:var(--c-ink-2)}
+.btn-ghost:hover{border-color:var(--c-acc);color:var(--c-acc)}
+
+/* ---------- Banner ---------- */
+.hero{background:
+   radial-gradient(900px 340px at 12% -10%,rgba(255,217,119,.30),transparent 62%),
+   radial-gradient(700px 300px at 92% 0%,rgba(27,43,75,.10),transparent 60%),
+   linear-gradient(180deg,#fffdf7,#f5f3ee);
+  border-bottom:1px solid var(--c-line);
+  padding:46px 0 40px;
+}
+.hero-grid{display:grid;grid-template-columns:1.35fr .95fr;gap:34px;align-items:center}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{font-size:12px;padding:4px 11px;border-radius:99px;background:#fff;border:1px solid var(--c-line);color:var(--c-ink-2);font-weight:700}
+.badge.gold{background:linear-gradient(135deg,#fff4d2,#ffe7a8);border-color:#f0d59a;color:#8a6415}
+.hero h1{font-size:38px;line-height:1.22;letter-spacing:.5px}
+.hero h1 em{font-style:normal;color:var(--c-acc);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;background:rgba(255,217,119,.55);z-index:-1;border-radius:4px}
+.hero-desc{margin-top:14px;color:var(--c-ink-2);font-size:15px;max-width:640px}
+.searchbar{margin-top:22px;display:flex;background:#fff;border:1px solid var(--c-line);border-radius:13px;padding:6px;box-shadow:var(--sh);max-width:600px}
+.searchbar input{flex:1;border:0;outline:0;padding:11px 13px;font-size:14px;background:transparent;color:var(--c-ink)}
+.searchbar button{border:0;border-radius:9px;padding:0 22px;font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,#1b2b4b,#38506f);cursor:pointer}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-tags a{font-size:12.5px;padding:5px 12px;border-radius:99px;background:rgba(255,255,255,.85);border:1px solid var(--c-line);color:var(--c-ink-2);transition:.2s}
+.hero-tags a:hover{background:var(--c-ink);color:#fff;border-color:var(--c-ink)}
+.hero-cover{background:linear-gradient(150deg,#1b2b4b,#3a5170 55%,#6b7f9c);border-radius:20px;padding:22px;color:#fff;box-shadow:0 22px 46px rgba(27,43,75,.28);position:relative;overflow:hidden}
+.hero-cover::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,217,119,.22);right:-70px;top:-70px;filter:blur(6px)}
+.hero-cover h3{font-size:15px;letter-spacing:1px;color:var(--c-acc-2);margin-bottom:14px}
+.mini-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.18);font-size:13px}
+.mini-row:last-of-type{border-bottom:0}
+.mini-row span:last-child{color:var(--c-acc-2);font-weight:700}
+.hero-cover .foot{margin-top:14px;font-size:12px;color:rgba(255,255,255,.66)}
+
+/* ---------- 快捷分类 ---------- */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cat{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);padding:15px 16px;display:flex;gap:12px;align-items:center;transition:.22s;box-shadow:var(--sh)}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--sh-h);border-color:#e8d9b4}
+.cat .ico{width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:var(--c-soft);color:#8a6415;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.cat b{display:block;font-size:14px}
+.cat small{color:var(--c-mut);font-size:12px}
+
+/* ---------- 卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);overflow:hidden;box-shadow:var(--sh);transition:.24s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.card .cover{height:104px;position:relative;display:flex;align-items:flex-end;padding:12px}
+.card .cover span{font-size:12px;font-weight:800;color:#fff;background:rgba(0,0,0,.28);padding:3px 9px;border-radius:7px;backdrop-filter:blur(3px)}
+.c1{background:linear-gradient(135deg,#1b2b4b,#4c6a92)}
+.c2{background:linear-gradient(135deg,#8a6415,#d9ad4d)}
+.c3{background:linear-gradient(135deg,#2f5d63,#6ba3a8)}
+.c4{background:linear-gradient(135deg,#4a3550,#8a6a94)}
+.c5{background:linear-gradient(135deg,#6b3b2f,#b57a5f)}
+.c6{background:linear-gradient(135deg,#2a3f5f,#5b7ba6)}
+.card-body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card-body h3{font-size:16px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11.5px;padding:3px 9px;border-radius:99px;background:var(--c-tag);color:#4b5a72}
+.tag.hot{background:#fff1d6;color:#8a6415}
+.card-body p{font-size:13px;color:var(--c-ink-2);margin:0}
+.card-meta{margin-top:auto;display:flex;justify-content:space-between;font-size:12px;color:var(--c-mut);border-top:1px dashed var(--c-line);padding-top:9px}
+.card-meta b{color:var(--c-acc)}
+
+/* ---------- 更新列表 ---------- */
+.upd{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);overflow:hidden;box-shadow:var(--sh)}
+.upd li{display:flex;gap:14px;padding:13px 16px;border-bottom:1px solid var(--c-line);align-items:flex-start;transition:.18s}
+.upd li:last-child{border-bottom:0}
+.upd li:hover{background:var(--c-soft)}
+.upd .t{font-size:12px;color:var(--c-mut);flex:0 0 118px;font-variant-numeric:tabular-nums}
+.upd .n{font-weight:700;font-size:14px;min-width:150px}
+.upd .d{font-size:13px;color:var(--c-ink-2)}
+
+/* ---------- 深度解析 ---------- */
+.article{background:var(--c-panel);border:1px solid var(--c-line);border-radius:18px;padding:28px 30px;box-shadow:var(--sh)}
+.article h2{font-size:23px;margin-bottom:6px}
+.article .lead{color:var(--c-mut);font-size:13px;margin-bottom:16px}
+.article h3{font-size:17px;margin:22px 0 8px;padding-left:11px;border-left:4px solid var(--c-acc);line-height:1.4}
+.article p{color:#33415c;font-size:14.5px}
+.article .hl{background:linear-gradient(180deg,transparent 62%,rgba(255,217,119,.55) 0);font-weight:700}
+.quote{background:var(--c-soft);border-left:4px solid var(--c-acc);border-radius:0 10px 10px 0;padding:13px 16px;font-size:14px;color:#4a5a76;margin:16px 0}
+
+/* ---------- 侧栏 ---------- */
+.split{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
+.aside-card{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);padding:16px 17px;box-shadow:var(--sh);margin-bottom:16px}
+.aside-card h3{font-size:15px;margin-bottom:11px;display:flex;align-items:center;gap:7px}
+.aside-card h3::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c-acc)}
+.rank li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--c-line);font-size:13.5px;align-items:center}
+.rank li:last-child{border-bottom:0}
+.rank .no{width:20px;height:20px;border-radius:6px;background:var(--c-tag);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#4b5a72;flex:0 0 20px}
+.rank li:nth-child(1) .no{background:linear-gradient(135deg,#d9ad4d,#f0cd80);color:#5c4108}
+.rank li:nth-child(2) .no{background:#dde4ee;color:#44536b}
+.rank li:nth-child(3) .no{background:#f0e0d2;color:#7a5540}
+.rank .txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank .val{font-size:12px;color:var(--c-acc);font-weight:700}
+.cloud{display:flex;gap:7px;flex-wrap:wrap}
+.cloud a{font-size:12.5px;padding:5px 11px;border-radius:99px;background:var(--c-tag);color:#4b5a72;transition:.2s}
+.cloud a:hover{background:var(--c-ink);color:#fff}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qa{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);padding:16px 18px;box-shadow:var(--sh);transition:.2s}
+.qa:hover{border-color:#e8d9b4;box-shadow:var(--sh-h)}
+.qa h3{font-size:15px;margin-bottom:8px;display:flex;gap:9px;align-items:flex-start}
+.qa h3 i{font-style:normal;color:var(--c-acc);font-weight:900;font-size:14px;line-height:1.5}
+.qa p{font-size:13.5px;color:var(--c-ink-2);margin:0}
+
+/* ---------- 评论 ---------- */
+.cmt-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.cmt{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad-s);padding:13px 15px;box-shadow:var(--sh)}
+.cmt-top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.avt{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#4c6a92,#1b2b4b)}
+.avt.b{background:linear-gradient(135deg,#b57a5f,#8a6415)}
+.avt.c{background:linear-gradient(135deg,#6ba3a8,#2f5d63)}
+.avt.d{background:linear-gradient(135deg,#8a6a94,#4a3550)}
+.cmt-top b{font-size:13px}
+.cmt-top time{font-size:11.5px;color:var(--c-mut);margin-left:auto}
+.cmt p{font-size:13.5px;color:#33415c;margin:0}
+
+/* ---------- 资讯 ---------- */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.news-card{background:var(--c-panel);border:1px solid var(--c-line);border-radius:var(--rad);padding:16px 17px;box-shadow:var(--sh);transition:.22s}
+.news-card:hover{transform:translateY(-3px);box-shadow:var(--sh-h)}
+.news-card time{font-size:12px;color:var(--c-mut)}
+.news-card h3{font-size:15.5px;margin:7px 0 8px}
+.news-card p{font-size:13px;color:var(--c-ink-2);margin:0}
+
+/* ---------- 订阅 ---------- */
+.subscribe{background:linear-gradient(135deg,#1b2b4b,#38506f);border-radius:20px;padding:34px 30px;color:#fff;display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 18px 40px rgba(27,43,75,.24)}
+.subscribe h2{font-size:22px;margin-bottom:6px}
+.subscribe p{color:rgba(255,255,255,.75);font-size:13.5px;margin:0;max-width:560px}
+.sub-form{display:flex;gap:8px;background:#fff;border-radius:12px;padding:5px;min-width:300px}
+.sub-form input{border:0;outline:0;padding:10px 12px;font-size:13.5px;flex:1;border-radius:8px}
+.sub-form button{border:0;border-radius:8px;padding:0 18px;background:linear-gradient(135deg,#d9ad4d,#c8952f);color:#fff;font-weight:800;font-size:13.5px;cursor:pointer}
+
+/* ---------- 页脚 ---------- */
+.foot{background:#141f33;color:#c3cbd9;margin-top:44px;padding:40px 0 22px;font-size:13px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px}
+.foot h4{color:#fff;font-size:14px;margin-bottom:11px}
+.foot a{display:block;color:#9aa6ba;padding:3px 0;transition:.18s}
+.foot a:hover{color:var(--c-acc-2)}
+.foot-brand{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:900;color:#fff;margin-bottom:10px}
+.foot-brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(140deg,#38506f,#1b2b4b);color:var(--c-acc-2);display:flex;align-items:center;justify-content:center;font-size:12px}
+.foot p{color:#8b97ab;font-size:12.5px;margin:0 0 9px}
+.foot-bot{border-top:1px solid rgba(255,255,255,.09);margin-top:26px;padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#7f8ba0;font-size:12px}
+
+/* ---------- 响应式 ---------- */
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .cards,.news{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .hero h1{font-size:26px}
+  .nav-links{display:none}
+  .cards,.news,.faq,.cmt-grid{grid-template-columns:1fr}
+  .article{padding:20px 18px}
+  .upd li{flex-wrap:wrap;gap:5px}
+  .upd .t{flex:0 0 100%}
+  .sub-form{min-width:0;width:100%}
+  .sec{padding:26px 0 6px}
+  .foot-grid{grid-template-columns:1fr}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 导航 -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="/#top"><span class="mark">mr</span>mrds观察站</a>
+    <nav class="nav-links">
+      <a href="/#rank-hot">热门榜单</a>
+      <a href="/#rank-new">最新更新</a>
+      <a href="/#cat-entry">分类入口</a>
+      <a href="/#deep-read">深度解析</a>
+      <a href="/#faq-box">常见问题</a>
+      <a href="/#cmt-area">用户评论</a>
+      <a href="/#news-flow">相关资讯</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="/#subscribe">订阅更新</a>
+      <a class="btn btn-main" href="/#rank-hot">看榜单</a>
+    </div>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge-row">
+        <span class="badge gold">2026 年 11 月 7 日更新</span>
+        <span class="badge">榜单聚合</span>
+        <span class="badge">深度解析</span>
+        <span class="badge">真实评论</span>
+      </div>
+      <h1>mrds 热门榜单与最新更新专题：把 <em>mrds</em> 值得追的内容一次看全</h1>
+      <p class="hero-desc">mrds 相关内容更新频率高、入口分散，单靠零散搜索很难判断哪些值得先看。本页把 mrds 热门榜、更新动态、类型解析和用户反馈集中到一处，按阅读顺序排布。</p>
+      <p class="hero-desc">你可以先看榜单找方向，再读深度解析判断质量，最后用分类入口和标签继续往下翻，避免在无效内容上浪费时间。</p>
+      <form class="searchbar" onsubmit="return false;">
+        <input type="text" placeholder="搜索 mrds 榜单、更新、解析关键词…" aria-label="站内搜索">
+        <button type="button">搜索</button>
+      </form>
+      <div class="hero-tags">
+        <a href="/#rank-hot">mrds 热门榜</a>
+        <a href="/#rank-new">今日更新</a>
+        <a href="/#deep-read">类型解析</a>
+        <a href="/#cat-entry">分类导航</a>
+        <a href="/#faq-box">新手指引</a>
+        <a href="/#cmt-area">真实评论</a>
+        <a href="/#news-flow">资讯速览</a>
+        <a href="/#aside-rank">编辑评分</a>
+      </div>
+    </div>
+    <aside class="hero-cover">
+      <h3>今日 mrds 数据速览</h3>
+      <div class="mini-row"><span>榜单收录条目</span><span>1,286</span></div>
+      <div class="mini-row"><span>今日更新条数</span><span>94</span></div>
+      <div class="mini-row"><span>近 7 日新增解析</span><span>27 篇</span></div>
+      <div class="mini-row"><span>用户评论累计</span><span>6,431 条</span></div>
+      <div class="mini-row"><span>平均编辑评分</span><span>8.6 / 10</span></div>
+      <p class="foot">数据为编辑整理口径，用于展示页面结构，非实时统计。</p>
+    </aside>
+  </div>
+</section>
+
+<!-- 分类入口 -->
+<section class="sec" id="cat-entry">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 分类入口</h2>
+      <span class="sub">按类型、热度、更新节奏快速定位</span>
+    </div>
+    <div class="cat-grid">
+      <a class="cat" href="/#rank-hot"><span class="ico">榜</span><span><b>热门总榜</b><small>综合热度与口碑</small></span></a>
+      <a class="cat" href="/#rank-new"><span class="ico">新</span><span><b>今日更新</b><small>按时间倒序</small></span></a>
+      <a class="cat" href="/#deep-read"><span class="ico">析</span><span><b>深度解析</b><small>类型与表现力</small></span></a>
+      <a class="cat" href="/#aside-rank"><span class="ico">评</span><span><b>编辑评分</b><small>8.0 分以上优先</small></span></a>
+      <a class="cat" href="/#cmt-area"><span class="ico">评</span><span><b>用户口碑</b><small>真实短评聚合</small></span></a>
+      <a class="cat" href="/#faq-box"><span class="ico">问</span><span><b>常见疑问</b><small>消费顺序与选择</small></span></a>
+      <a class="cat" href="/#news-flow"><span class="ico">讯</span><span><b>动态资讯</b><small>更新与看点</small></span></a>
+      <a class="cat" href="/#subscribe"><span class="ico">订</span><span><b>订阅追踪</b><small>不错过更新</small></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 内容简介 -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 是什么：本页想解决的问题</h2>
+      <span class="sub">内容简介 · 约 460 字</span>
+    </div>
+    <div class="article">
+      <p class="lead">面向第一次接触 mrds、或已经追了一段时间但缺少整体判断的读者。</p>
+      <p>搜索 <span class="hl">mrds</span> 的人，需求通常很集中：一类是想知道现在最值得看的是什么，一类是想确认某个内容到底有没有后续、更新到哪一步，还有一类是希望找到一个能长期跟进的入口，不用每次重新翻找。本页就是围绕这三种需求组织的。</p>
+      <p>页面先给榜单，因为榜单解决的是「先看哪个」的决策问题；再给更新列表，解决「追到哪了」的追踪问题；中间插入深度解析，帮助判断内容的类型特征、节奏和表现力；最后用常见问题和用户评论补足主观体验部分。这样的顺序，是为了让不同目的的人都能在较短时间内拿到自己要的信息。</p>
+      <p>适合的受众大致有三类。第一类是轻度浏览者，只想知道最近 mrds 有哪些被频繁提到的条目，看榜单和卡片就够了。第二类是有明确偏好的读者，会关心类型标签、更新频率和同类比较，可以重点看分类入口与深度解析。第三类是长期追踪者，更在意更新节奏和订阅提醒，建议直接看更新列表与订阅区。</p>
+      <p>页面提供的参考价值在于「结构化」：把分散的名字、标签、评分、更新状态放在同一套框架里，减少来回切换的成本。同时，所有板块都保留了继续往下翻的入口，看到感兴趣的内容可以顺着标签和分类继续扩展，而不是停在单条信息上。如果你打算长期关注 mrds 相关内容，建议收藏本页，后续更新会集中在同一结构里呈现，方便对比前后变化。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 热门推荐 -->
+<section class="sec" id="rank-hot">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 热门内容推荐</h2>
+      <a class="more" href="/#rank-new">查看今日更新 →</a>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="cover c1"><span>热度 9.7</span></div>
+        <div class="card-body">
+          <h3>长夜回声计划</h3>
+          <div class="tags"><span class="tag hot">热门</span><span class="tag">主线向</span><span class="tag">慢热</span></div>
+          <p>前段铺垫克制，中段开始加速，适合喜欢层层推进而不是一上来就高潮的读者，更新节奏稳定。</p>
+          <div class="card-meta"><span>更新至第 24 集</span><b>9.4</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c2"><span>口碑 9.5</span></div>
+        <div class="card-body">
+          <h3>雾港档案第七卷</h3>
+          <div class="tags"><span class="tag">档案型</span><span class="tag hot">高口碑</span><span class="tag">细节多</span></div>
+          <p>信息密度偏高，适合愿意回看细节的读者，单集信息量比同类更扎实，讨论区考据帖也多。</p>
+          <div class="card-meta"><span>本周新增 3 条</span><b>9.5</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c3"><span>上升 9.2</span></div>
+        <div class="card-body">
+          <h3>南岸短章合集</h3>
+          <div class="tags"><span class="tag">短篇</span><span class="tag">轻量</span><span class="tag hot">上升快</span></div>
+          <p>单篇时长友好，适合碎片时间，题材跨度大，同一合集里能遇到几种完全不同的表达方式。</p>
+          <div class="card-meta"><span>更新至第 12 篇</span><b>9.0</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c4"><span>话题 9.1</span></div>
+        <div class="card-body">
+          <h3>镜面之下第二季</h3>
+          <div class="tags"><span class="tag">续作</span><span class="tag">人物向</span><span class="tag">争议</span></div>
+          <p>第二季把重心从事件转向人物关系，评价两极，喜欢人物线的读者反馈明显更好。</p>
+          <div class="card-meta"><span>更新至第 9 集</span><b>8.7</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c5"><span>稳居 8.9</span></div>
+        <div class="card-body">
+          <h3>旧车站手记</h3>
+          <div class="tags"><span class="tag">治愈</span><span class="tag">日常</span><span class="tag">轻剧情</span></div>
+          <p>节奏很慢但不拖，情绪处理克制，适合晚上看，属于看完不累但会记住几个画面的类型。</p>
+          <div class="card-meta"><span>更新至第 18 集</span><b>8.9</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c6"><span>新晋 8.8</span></div>
+        <div class="card-body">
+          <h3>折线城纪事</h3>
+          <div class="tags"><span class="tag hot">新晋</span><span class="tag">群像</span><span class="tag">结构复杂</span></div>
+          <p>多线并行，前两集需要一点耐心，撑过去之后信息开始互相咬合，属于越看越顺的类型。</p>
+          <div class="card-meta"><span>更新至第 6 集</span><b>8.8</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c1"><span>稳定 8.7</span></div>
+        <div class="card-body">
+          <h3>白塔来信</h3>
+          <div class="tags"><span class="tag">情感线</span><span class="tag">慢节奏</span><span class="tag">细腻</span></div>
+          <p>情感推进靠细节而不是台词，适合喜欢从表情和小动作里读信息的读者，配角塑造意外出彩。</p>
+          <div class="card-meta"><span>更新至第 15 集</span><b>8.7</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c3"><span>口碑 8.6</span></div>
+        <div class="card-body">
+          <h3>潮汐线之外</h3>
+          <div class="tags"><span class="tag">设定向</span><span class="tag">世界观</span><span class="tag">考据</span></div>
+          <p>设定铺得开，前期解释性内容偏多，喜欢世界观搭建的读者评价高，追求快节奏的可能不适应。</p>
+          <div class="card-meta"><span>更新至第 11 集</span><b>8.6</b></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="cover c5"><span>回温 8.5</span></div>
+        <div class="card-body">
+          <h3>三号窗口</h3>
+          <div class="tags"><span class="tag">单元式</span><span class="tag">轻悬疑</span><span class="tag">易入</span></div>
+          <p>单元结构清晰，随便点开一集也能看懂，适合作为入门选择，缺点是长线钩子相对偏弱。</p>
+          <div class="card-meta"><span>更新至第 21 集</span><b>8.5</b></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 最新更新 -->
+<section class="sec" id="rank-new">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 最新更新动态</h2>
+      <span class="sub">截至 2026 年 11 月 7 日</span>
+    </div>
+    <ul class="upd">
+      <li><span class="t">11-07 09:20</span><span class="n">长夜回声计划</span><span class="d">第 24 集已上线，主线推进明显，评论集中在后半段转折。</span></li>
+      <li><span class="t">11-07 08:05</span><span class="n">南岸短章合集</span><span class="d">新增第 12 篇，单篇篇幅较短，适合通勤时段浏览。</span></li>
+      <li><span class="t">11-06 21:40</span><span class="n">雾港档案第七卷</span><span class="d">本周第 3 条更新，补充了此前讨论较多的背景细节。</span></li>
+      <li><span class="t">11-06 19:12</span><span class="n">镜面之下第二季</span><span class="d">第 9 集上线，人物关系线出现新变化，讨论热度回升。</span></li>
+      <li><span class="t">11-06 15:30</span><span class="n">折线城纪事</span><span class="d">更新至第 6 集，多线开始交汇，评价逐渐走高。</span></li>
+      <li><span class="t">11-05 22:08</span><span class="n">旧车站手记</span><span class="d">第 18 集上线，日常线为主，情绪处理依旧克制。</span></li>
+      <li><span class="t">11-05 18:46</span><span class="n">白塔来信</span><span class="d">更新至第 15 集，配角戏份增加，反馈偏正面。</span></li>
+      <li><span class="t">11-05 11:15</span><span class="n">潮汐线之外</span><span class="d">第 11 集补充世界观说明，解释性段落比前几集更多。</span></li>
+      <li><span class="t">11-04 20:33</span><span class="n">三号窗口</span><span class="d">更新至第 21 集，新单元故事独立性强，适合新读者。</span></li>
+      <li><span class="t">11-04 16:02</span><span class="n">雾港档案第七卷</span><span class="d">衍生解读文章上线，梳理了本卷的时间线结构。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 深度解析 + 侧栏 -->
+<section class="sec" id="deep-read">
+  <div class="wrap split">
+    <div>
+      <div class="article">
+        <h2>mrds 深度解析：类型特征、节奏与适合人群</h2>
+        <p class="lead">从编辑视角拆解 mrds 相关内容为什么值得看、怎么看更省时间。</p>
+
+        <p>围绕 <span class="hl">mrds</span> 的讨论，很容易停留在「哪个好看」这一层，但真正影响观看体验的，往往是几组更具体的问题：作品的节奏是快是慢、信息是集中在开头还是分散在中后段、人物线是否压过事件线、单集结束时是否留钩子。把这些拆开看，选择会清晰很多。</p>
+
+        <h3>一、类型特征：混合多于纯粹</h3>
+        <p>从本页收录的条目看，mrds 相关内容很少是单一类型的纯粹样本，更常见的是两到三种元素的混合。比如以档案结构为主的作品，会叠加人物情感线来降低信息门槛；以日常治愈为主的，又会用轻悬疑维持基本的观看动力。这种混合带来的好处是受众面更宽，代价是前几集的「定位感」偏弱，需要看到一定篇幅才能判断它到底偏向哪一边。</p>
+        <p>因此判断类型时，不建议只看简介里的标签，而要看前三到五集的重心落在哪里：如果大量时间花在解释设定，那它更偏世界观型；如果大量时间花在人物对话和关系变化，那它更偏人物线。这个判断直接决定了后面要不要继续追。</p>
+
+        <h3>二、节奏与消费体验</h3>
+        <p>节奏是 mrds 相关讨论里出现频率最高的词，但「慢」和「拖」并不是一回事。慢是信息释放有节制，观众愿意等；拖是重复信息、没有推进。区分方法很实用：看完一集后回忆一下，是否获得了至少一个新的有效信息，如果有，那属于慢；如果回忆起来全是似曾相识的对话，那就偏拖。</p>
+        <div class="quote">一个简单的自测：连续看三集，如果对其中至少两集能说出「这一集发生了什么新变化」，说明节奏与你匹配；如果三集里只记住一集，可以考虑换一个入口。</div>
+        <p>另外，单集时长的差异会明显影响消费场景。偏短的内容适合碎片时间，但长线钩子往往偏弱；偏长的内容信息更完整，但对连续时间要求高。本页在推荐卡片里标注了更新状态和评分，就是为了让读者在打开之前先做一次粗筛。</p>
+
+        <h3>三、人物线与事件线的权重</h3>
+        <p>mrds 收录内容中，人物线权重高的作品，评价往往更两极：喜欢的人会因为角色塑造留下，不喜欢的人会觉得事件推进太慢。事件线权重高的作品则相反，前期观感统一，但中后期容易因为角色动机薄弱而掉分。比较稳妥的做法是先确认自己更在意哪一边，再去看对应类型的条目，而不是被整体评分左右。</p>
+
+        <h3>四、同类比较与选择建议</h3>
+        <p>如果你追求稳定推进，优先看更新节奏规律、单集信息量均衡的条目；如果你喜欢讨论和考据，优先看细节多、背景设定完整的内容；如果只是想在碎片时间放松，单元结构清晰、单集可独立观看的条目更合适。本页的分类入口和标签云，正是为这三种不同取向准备的。</p>
+        <p>最后提醒一点：mrds 相关内容的更新状态变化较快，评分和口碑也会随更新波动。本页的评分与热度为编辑整理口径，适合作为初筛参考，具体是否合口味，仍建议先看一到两集再决定是否长期跟进。</p>
+      </div>
+    </div>
+
+    <aside id="aside-rank">
+      <div class="aside-card">
+        <h3>编辑评分榜</h3>
+        <ul class="rank">
+          <li><span class="no">1</span><span class="txt">雾港档案第七卷</span><span class="val">9.5</span></li>
+          <li><span class="no">2</span><span class="txt">长夜回声计划</span><span class="val">9.4</span></li>
+          <li><span class="no">3</span><span class="txt">南岸短章合集</span><span class="val">9.0</span></li>
+          <li><span class="no">4</span><span class="txt">旧车站手记</span><span class="val">8.9</span></li>
+          <li><span class="no">5</span><span class="txt">折线城纪事</span><span class="val">8.8</span></li>
+          <li><span class="no">6</span><span class="txt">镜面之下第二季</span><span class="val">8.7</span></li>
+          <li><span class="no">7</span><span class="txt">白塔来信</span><span class="val">8.7</span></li>
+          <li><span class="no">8</span><span class="txt">潮汐线之外</span><span class="val">8.6</span></li>
+        </ul>
+      </div>
+      <div class="aside-card">
+        <h3>热门标签</h3>
+        <div class="cloud">
+          <a href="/#rank-hot">主线向</a>
+          <a href="/#rank-hot">慢热</a>
+          <a href="/#rank-hot">档案型</a>
+          <a href="/#rank-hot">人物线</a>
+          <a href="/#rank-hot">单元式</a>
+          <a href="/#rank-hot">群像</a>
+          <a href="/#rank-hot">治愈</a>
+          <a href="/#rank-hot">轻悬疑</a>
+          <a href="/#rank-new">今日更新</a>
+          <a href="/#deep-read">节奏分析</a>
+        </div>
+      </div>
+      <div class="aside-card">
+        <h3>体验指南</h3>
+        <p style="font-size:13.5px;color:#41506b;margin:0 0 9px">本页结构按「先决策、再判断、后追踪」排布，建议初次浏览按顺序看：榜单 → 解析 → 更新 → 评论。</p>
+        <p style="font-size:13.5px;color:#41506b;margin:0 0 9px">移动端顶部导航可横向滑动，分类入口支持一键跳转，卡片信息在小屏下自动改为单列。</p>
+        <p style="font-size:13.5px;color:#41506b;margin:0">如果只想关注某一类内容，直接用标签云筛选，比逐条翻榜单更省时间。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq-box">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 常见问题解答</h2>
+      <span class="sub">围绕选择、顺序与追踪</span>
+    </div>
+    <div class="faq">
+      <div class="qa">
+        <h3><i>Q1</i>第一次接触 mrds，应该从哪一条开始？</h3>
+        <p>建议从「三号窗口」这类单元结构清晰的内容入手，单集可独立观看，不需要补前情，能较快判断自己是否适应这一类型的表达方式。如果看完觉得节奏合适，再转到主线更强的条目，避免一上来就进入信息密度高的作品而中途放弃。</p>
+      </div>
+      <div class="qa">
+        <h3><i>Q2</i>mrds 相关内容的更新频率大概是什么水平？</h3>
+        <p>从本页收录情况看，主线向内容多为每周固定更新，合集类偏不定期但单次更新篇幅稳定，档案型则常见集中补充背景细节。具体条目差异较大，建议以更新列表中的时间为准，并结合订阅提醒使用，避免反复手动刷新。</p>
+      </div>
+      <div class="qa">
+        <h3><i>Q3</i>评分高的就一定适合自己吗？</h3>
+        <p>不一定。mrds 收录内容的评分更多反映整体完成度和口碑，但观感与个人偏好高度相关。人物线权重高的作品评分往往两极，喜欢角色塑造的读者评价更高；事件线权重高的则相反。建议先看评分与标签，再结合深度解析中的节奏判断做二次筛选。</p>
+      </div>
+      <div class="qa">
+        <h3><i>Q4</i>怎么判断一部内容是「慢热」还是「拖」？</h3>
+        <p>用一个简单标准：连续看三集，如果其中至少两集能说出明确的新变化，属于慢热；如果三集看下来几乎没有新信息，只是重复对话和场景，则更接近拖。这个方法比看别人的评价更贴近自己的实际体验，也更省时间。</p>
+      </div>
+      <div class="qa">
+        <h3><i>Q5</i>喜欢 mrds 中的档案型内容，还有哪些类似推荐？</h3>
+        <p>可以优先看「雾港档案第七卷」与「潮汐线之外」，两者都偏重设定与细节，适合愿意回看和考据的读者。如果希望信息密度稍低一些，可以搭配「旧车站手记」，用日常线平衡整体观看强度，避免连续高强度信息带来的疲劳。</p>
+      </div>
+      <div class="qa">
+        <h3><i>Q6</i>本页的榜单和评分会持续更新吗？</h3>
+        <p>本页按固定结构维护，榜单、更新列表、评论和资讯板块会随内容变化调整。评分与热度为编辑整理口径，主要用于初筛参考，不替代个人判断。如果打算长期关注 mrds 相关内容，建议收藏本页并通过订阅区获取更新提醒。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 评论 -->
+<section class="sec" id="cmt-area">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>用户评论精选</h2>
+      <span class="sub">近 30 天 · 编辑整理</span>
+    </div>
+    <div class="cmt-grid">
+      <div class="cmt"><div class="cmt-top"><span class="avt">晚</span><b>晚风翻页</b><time>11-06</time></div><p>长夜回声计划前六集我真的差点弃了，第七集开始才找到感觉，现在反而觉得前面的铺垫是必要的。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt b">木</span><b>木木不追更</b><time>11-06</time></div><p>雾港档案细节是真多，但我这种不爱回看的看得有点累，属于好看但需要状态好的时候看。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt c">海</span><b>海岸线以北</b><time>11-05</time></div><p>南岸短章合集是我最近通勤路上看的，单篇短，不担心看不完，题材跨度大这点很加分。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt d">镜</span><b>镜中第三人</b><time>11-05</time></div><p>镜面之下第二季转人物线我能接受，但节奏确实比第一季慢，理解有人不喜欢。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt">旧</span><b>旧书页角</b><time>11-05</time></div><p>旧车站手记适合睡前看，情绪不冲，看完不会睡不着，这点对我来说比剧情重要。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt b">折</span><b>折线观察员</b><time>11-04</time></div><p>折线城纪事多线并行确实需要耐心，但撑过前两集之后信息咬合得挺好，推荐给喜欢结构的。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt c">白</span><b>白塔下的猫</b><time>11-04</time></div><p>白塔来信配角比主角好看，这个评价可能有点奇怪，但确实是这样。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt d">潮</span><b>潮汐观测站</b><time>11-03</time></div><p>潮汐线之外解释性内容偏多，我反而喜欢这种，各有所好，不用强求一致。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt">三</span><b>三号窗口常客</b><time>11-03</time></div><p>三号窗口新单元挺独立的，新读者直接从这集开始也行，不用补前面的。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt b">评</span><b>评分参考派</b><time>11-02</time></div><p>我觉得这个页面的评分挺中肯的，至少没有虚高，按评分筛选省了不少时间。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt c">慢</span><b>慢热选手</b><time>11-02</time></div><p>慢热可以接受，拖不行，这个标准我也想了一下，确实比看别人的评价靠谱。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt d">路</span><b>路过留一句</b><time>11-01</time></div><p>希望更新列表能标注总集数，现在只能看到更新到第几集，不太好判断还剩多少。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt">追</span><b>追更不睡觉</b><time>10-31</time></div><p>镜面之下第二季我还在观望，等这一季完结再一次性看，追更太折磨了。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt b">标</span><b>标签收藏家</b><time>10-30</time></div><p>标签云这个设计挺实用的，直接按标签筛比一个个翻卡片快很多。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt c">客</span><b>客观吐槽组</b><time>10-29</time></div><p>整体不错，就是部分卡片简介有点官方口吻，希望多写点具体的看点。</p></div>
+      <div class="cmt"><div class="cmt-top"><span class="avt d">入</span><b>入坑第十天</b><time>10-28</time></div><p>按这个页面的顺序看的，先看榜再挑，确实比乱点省时间，新手可以照这个来。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 资讯 -->
+<section class="sec" id="news-flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>mrds 相关资讯</h2>
+      <span class="sub">更新动态与看点速览</span>
+    </div>
+    <div class="news">
+      <article class="news-card">
+        <time>2026-11-07</time>
+        <h3>长夜回声计划进入中后段，主线推进提速</h3>
+        <p>第 24 集上线后讨论明显增加，评论区普遍认为铺垫期结束，后续值得继续跟进。</p>
+      </article>
+      <article class="news-card">
+        <time>2026-11-06</time>
+        <h3>雾港档案第七卷补充背景细节，考据帖增多</h3>
+        <p>本周新增内容集中在线索梳理，适合愿意回看前文的读者，也带动了讨论区活跃度。</p>
+      </article>
+      <article class="news-card">
+        <time>2026-11-05</time>
+        <h3>南岸短章合集新增一篇，题材跨度继续扩大</h3>
+        <p>新篇篇幅保持轻量，延续了合集「单篇可独立阅读」的特点，适合碎片时间消费。</p>
+      </article>
+      <article class="news-card">
+        <time>2026-11-04</time>
+        <h3>折线城纪事多线交汇，口碑出现回升</h3>
+        <p>前几集因结构复杂评价分化，第 6 集后多条线索开始互相呼应，评分有所提升。</p>
+      </article>
+      <article class="news-card">
+        <time>2026-11-03</time>
+        <h3>三号窗口新单元上线，新读者入坑门槛降低</h3>
+        <p>单元结构独立，可跳过前情直接观看，被不少读者视为入门首选之一。</p>
+      </article>
+      <article class="news-card">
+        <time>2026-11-02</time>
+        <h3>mrds 专题页结构更新，新增编辑评分榜</h3>
+        <p>本次调整补充了评分与标签筛选，方便按偏好快速定位，阅读路径更清晰。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 订阅 -->
+<section class="sec" id="subscribe">
+  <div class="wrap">
+    <div class="subscribe">
+      <div>
+        <h2>订阅 mrds 更新提醒</h2>
+        <p>留下邮箱，获取榜单变化、更新动态与解析文章的整理提醒，避免错过关注条目的最新进展。</p>
+      </div>
+      <form class="sub-form" onsubmit="return false;">
+        <input type="email" placeholder="输入邮箱地址" aria-label="邮箱">
+        <button type="button">订阅</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="mark">mr</span>mrds观察站</div>
+        <p>专注 mrds 相关内容的榜单整理、更新追踪与深度解析，用结构化方式降低选择成本。</p>
+        <p>本站内容为编辑整理与用户观点汇总，评分与热度为参考口径，不构成任何消费建议。</p>
+      </div>
+      <div>
+        <h4>站内栏目</h4>
+        <a href="/#rank-hot">热门榜单</a>
+        <a href="/#rank-new">最新更新</a>
+        <a href="/#deep-read">深度解析</a>
+        <a href="/#cat-entry">分类入口</a>
+      </div>
+      <div>
+        <h4>互动与帮助</h4>
+        <a href="/#faq-box">常见问题</a>
+        <a href="/#cmt-area">用户评论</a>
+        <a href="/#news-flow">相关资讯</a>
+        <a href="/#subscribe">订阅提醒</a>
+      </div>
+      <div>
+        <h4>友情链接</h4>
+        <a href="/#top">内容合作（占位）</a>
+        <a href="/#top">站点地图（占位）</a>
+        <a href="/#top">意见反馈（占位）</a>
+        <a href="/#top">隐私说明（占位）</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 mrds观察站 · 内容仅供阅读参考</span>
+      <span>免责声明：页面数据为编辑整理口径，与任何第三方平台无隶属关系。</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+                                                                                                                 </html>
